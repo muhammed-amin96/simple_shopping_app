@@ -18,6 +18,16 @@ This project is a Flutter-based mobile application that showcases an e-commerce 
     
     - Users can add items to the cart by tapping the "Add to Cart" button.
     - A `SnackBar` notification confirms the action.
+5. **User Sign-Up Page**
+    
+    - A form that allows users to create an account by entering their full name, email, password, and confirm password.
+    - Validation checks for each field to ensure proper input:
+        - Full name must start with a capital letter.
+        - Email must contain an `@` symbol.
+        - Password must be at least 6 characters long.
+        - Confirm password must match the entered password.
+    - Password visibility toggle for both password and confirm password fields.
+    - Displays a success dialog upon successful form submission, with navigation to the home page.
 
 ## Code Overview
 
@@ -117,7 +127,73 @@ void _addToCart() {
   );
 }
 ```
+### SignUp Widget
 
+#### Description
+
+The `SignUp` widget provides a user registration form with fields for full name, email, password, and confirm password.
+
+#### Key Features
+
+- **Form Validation**
+
+```dart
+validator: (value) {
+  if (value != null && value.isEmpty) {
+    return 'Field cannot be empty';
+  }
+  if (!value.contains('@')) {
+    return 'Email should contain @';
+  }
+  return null;
+},
+```
+
+- Validates each field to ensure correctness of input.
+    
+- **Password Visibility Toggle**
+    
+
+```dart
+suffixIcon: IconButton(
+  icon: Icon(hiddenPassword ? Icons.visibility : Icons.visibility_off),
+  onPressed: () {
+    togglePassword();
+  },
+),
+```
+
+- Toggles the visibility of the password and confirm password fields.
+    
+- **Success Dialog**
+    
+
+```dart
+Future<void> successDialog() async {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Hello'),
+        content: const Text('Account Created Successfully'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Close'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+```
+
+- Displays a confirmation dialog upon successful registration.
 ## Dependencies
 
 This project uses the following Flutter framework components:
@@ -129,13 +205,28 @@ This project uses the following Flutter framework components:
 - `GridView`
 - `PageView`
 - `SnackBar`
+- `TextFormField`
+- `Form`
+- `AlertDialog`
 
 ## Screenshots
 
 - **Main Page:** Displays the product list, image carousel, and hot offers.
+
 ![Output Screenshot](output.png)
+
 - **SnackBar Notification:** Confirms when an item is added to the cart.
+
 ![Output Screenshot](output2.png)
+
+- **SignUp Page:**
+
+![Output Screenshot](output3.png)
+
+- **SignUp Page With Corrupted data:**
+
+![Output Screenshot](error.png)
+
 ## Getting Started
 
 1. Clone the repository:
