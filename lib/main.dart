@@ -10,8 +10,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Shopify App',
+      theme: ThemeData(
+        useMaterial3: false,
+        primarySwatch: Colors.blue,
+      ),
       home: HomePage(),
     );
   }
