@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_shopping_app/home_page.dart';
 import 'package:simple_shopping_app/sign_up.dart';
 
 void main() {
