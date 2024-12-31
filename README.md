@@ -28,6 +28,9 @@ This project is a Flutter-based mobile application that showcases an e-commerce 
         - Confirm password must match the entered password.
     - Password visibility toggle for both password and confirm password fields.
     - Displays a success dialog upon successful form submission, with navigation to the home page.
+5. **Custom Page Transition**
+    
+    - Added a custom fade-in animation for page transitions using `FadeInPageRoute`.
 
 ## Code Overview
 
@@ -194,6 +197,42 @@ Future<void> successDialog() async {
 ```
 
 - Displays a confirmation dialog upon successful registration.
+
+### Custom Page Transition
+
+```dart
+class FadeInPageRoute<T> extends PageRouteBuilder<T> {
+  final Widget child;
+
+  FadeInPageRoute({required this.child})
+      : super(
+          transitionDuration: Duration(milliseconds: 5000),
+          pageBuilder: (context, animation, secondaryAnimation) => child,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.fastOutSlowIn,
+                ),
+              ),
+              child: child,
+            );
+          },
+        );
+}
+```
+
+### Navigation with Custom Transition
+
+To navigate with the custom fade-in animation:
+
+```dart
+Navigator.push(
+  context,
+  FadeInPageRoute(child: HomePage()),
+);
+```
 ## Dependencies
 
 This project uses the following Flutter framework components:
