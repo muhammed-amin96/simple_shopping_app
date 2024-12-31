@@ -155,8 +155,7 @@ class _SignUpState extends State<SignUp> {
               child: const Text('Close'),
               onPressed: () {
                 // Close the dialog and navigate to the home page
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.of(context).push(FadeInPageRoute(child: HomePage()));
               },
             ),
           ],
@@ -164,4 +163,31 @@ class _SignUpState extends State<SignUp> {
       },
     );
   }
+}
+
+class FadeInPageRoute<T> extends PageRouteBuilder<T> {
+  // Define a custom page route that fades in the new page
+  final Widget child; // The child widget to navigate to in our case HomePage
+
+  FadeInPageRoute({required this.child})
+      : super(
+          transitionDuration: Duration(
+              milliseconds:
+                  5000), // Duration of the transition change it as you like to experiment the effect
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              child, //this function returns the widget for the new page
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // This function defines how the page transition animation will be
+            return FadeTransition(
+              // creates a fading effect the opacity of the new page changes from completely transparent to completely opaque
+              opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.fastOutSlowIn,
+                ),
+              ),
+              child: child,
+            );
+          },
+        );
 }
