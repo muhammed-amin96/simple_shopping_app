@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,12 +13,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Shopify App'),
+          title: Text(tr('shopify app')),
         ),
         body: ListView(
           children: [
             Text(
-              'Our Products',
+              tr('our products'),
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -45,15 +46,15 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Image.network(
                             'https://picsum.photos/200',
-                            width: 100,
-                            height: 100,
+                            width: 75,
+                            height: 75,
                           ),
                         ),
-                        Text('Product $index'),
+                        Text('${tr('product')} $index'),
                         ElevatedButton.icon(
                           onPressed: _addToCart,
                           icon: Icon(Icons.add_shopping_cart),
-                          label: Text('add to cart'),
+                          label: Text(tr('add to cart')),
                         )
                       ],
                     ),
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Text(
-              'Hot Offers',
+              tr('hot offers'),
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                           'https://picsum.photos/200',
                           width: 120,
                         ),
-                        Expanded(flex: 2, child: Text('Offer $index')),
+                        Expanded(flex: 2, child: Text('${tr('offer')} $index')),
                       ],
                     ),
                   );
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
   void _addToCart() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(' Item added to cart'),
+        content: Text(tr('snackbar')),
         duration: Duration(seconds: 2),
       ),
     );

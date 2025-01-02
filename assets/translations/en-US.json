@@ -9,5 +9,18 @@
     "product": "Product",
     "add to cart": "Add to Cart",
     "hot offers": "Hot Offers",
-    "offer": "Offer"
+    "offer": "Offer",
+    "error0": "Full Name Cannot be empty",
+    "error1": "Full Name should start with a capital letter",
+    "error2": "Email Cannot be empty",
+    "error3": "Email should contain @",
+    "error4": "Password Cannot be empty",
+    "error5": "Password should contain at least 6 characters",
+    "error6": "This field Cannot be empty",
+    "error7": "Password does not match",
+    "dialogue title": "Hello",
+    "dialogue content": "Account Created Successfully",
+    "dialogue action": "Close",
+    "snackbar": "Item added to cart",
+    "change language": "Change Language"
 }

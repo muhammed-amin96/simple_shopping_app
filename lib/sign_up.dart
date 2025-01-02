@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_shopping_app/home_page.dart';
 
@@ -21,109 +22,116 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text(tr('sign up')),
       ),
-      body: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                TextFormField(
-                  // Full Name field
-                  decoration: InputDecoration(labelText: 'Full Name'),
-                  controller: fullNameController,
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return 'Full Name Cannot be empty';
-                    }
-                    if (value!.startsWith(RegExp(r'[a-z0-9]'))) {
-                      // Check if the first letter is capital using regular expression.
-                      return 'Full Name should start with a capital letter';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  // Email field
-                  decoration: InputDecoration(labelText: 'Email'),
-                  controller: emailController,
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return 'Email Cannot be empty';
-                    }
-                    if (!value!.contains('@')) {
-                      // Check if the email contains @
-                      return 'Email should contain @';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  // Password field
-                  decoration: InputDecoration(
-                      labelText: 'Password',
-                      suffixIcon: IconButton(
-                        // if the password is hidden, show the visibility icon, else show the visibility_off icon
-                        icon: Icon(hiddenPassword
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                        onPressed: () {
-                          togglePassword();
-                        },
-                      )),
-                  controller: passwordController,
-                  obscureText: hiddenPassword, // hide the password
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return 'Password Cannot be empty';
-                    }
-                    if (value!.length < 6) {
-                      // Check if the password is less than 6 characters
-                      return 'Password should be at least 6 characters';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  // Confirm Password field
-                  decoration: InputDecoration(
-                      labelText: 'Confirm Password',
-                      suffixIcon: IconButton(
-                        // if the password is hidden, show the visibility icon, else show the visibility_off icon
-                        icon: Icon(hiddenConfirmPassword
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                        onPressed: () {
-                          toggleConfirmPassword();
-                        },
-                      )),
-                  controller: confirmPasswordController,
-                  obscureText: hiddenConfirmPassword, // hide the password
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return 'This field Cannot be empty';
-                    }
-                    if (value != passwordController.text) {
-                      // Check if the password matches the confirm password
-                      return 'Password does not match';
-                    }
-                    return null;
-                  },
-                ),
-                ElevatedButton(
-                  // Sign Up button
-                  child: Text('SignUp'),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Check if the form is valid
-                      successDialog();
-                    }
-                  },
-                )
-              ],
-            ),
-          )),
+      body: Column(children: [
+        Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  TextFormField(
+                    // Full Name field
+                    decoration: InputDecoration(labelText: tr('full name')),
+                    controller: fullNameController,
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return tr('error0');
+                      }
+                      if (value!.startsWith(RegExp(r'[a-z0-9]'))) {
+                        // Check if the first letter is capital using regular expression.
+                        return tr('error1');
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    // Email field
+                    decoration: InputDecoration(labelText: tr('email')),
+                    controller: emailController,
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return tr('error2');
+                      }
+                      if (!value!.contains('@')) {
+                        // Check if the email contains @
+                        return tr('error3');
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    // Password field
+                    decoration: InputDecoration(
+                        labelText: tr('password'),
+                        suffixIcon: IconButton(
+                          // if the password is hidden, show the visibility icon, else show the visibility_off icon
+                          icon: Icon(hiddenPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            togglePassword();
+                          },
+                        )),
+                    controller: passwordController,
+                    obscureText: hiddenPassword, // hide the password
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return tr('error4');
+                      }
+                      if (value!.length < 6) {
+                        // Check if the password is less than 6 characters
+                        return tr('error5');
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    // Confirm Password field
+                    decoration: InputDecoration(
+                        labelText: tr('confirm password'),
+                        suffixIcon: IconButton(
+                          // if the password is hidden, show the visibility icon, else show the visibility_off icon
+                          icon: Icon(hiddenConfirmPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            toggleConfirmPassword();
+                          },
+                        )),
+                    controller: confirmPasswordController,
+                    obscureText: hiddenConfirmPassword, // hide the password
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return tr('error6');
+                      }
+                      if (value != passwordController.text) {
+                        // Check if the password matches the confirm password
+                        return tr('error7');
+                      }
+                      return null;
+                    },
+                  ),
+                  ElevatedButton(
+                    // Sign Up button
+                    child: Text(tr('sign up')),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // Check if the form is valid
+                        successDialog();
+                      }
+                    },
+                  )
+                ],
+              ),
+            )),
+        ElevatedButton(
+            onPressed: () {
+              changeLanguage();
+            },
+            child: Text(tr('change language')))
+      ]),
     );
   }
 
@@ -148,11 +156,11 @@ class _SignUpState extends State<SignUp> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Hello'),
-          content: const Text('Account Created Successfully'),
+          title: Text(tr('dialogue title')),
+          content: Text(tr('dialogue content')),
           actions: <Widget>[
             TextButton(
-              child: const Text('Close'),
+              child: Text(tr('dialogue action')),
               onPressed: () {
                 // Close the dialog and navigate to the home page
                 Navigator.of(context).push(FadeInPageRoute(child: HomePage()));
@@ -162,6 +170,14 @@ class _SignUpState extends State<SignUp> {
         );
       },
     );
+  }
+
+  changeLanguage() {
+    if (context.locale == Locale('en', 'US')) {
+      context.setLocale(Locale('ar', 'EG'));
+    } else {
+      context.setLocale(Locale('en', 'US'));
+    }
   }
 }
 
