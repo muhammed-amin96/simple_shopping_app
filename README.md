@@ -28,9 +28,13 @@ This project is a Flutter-based mobile application that showcases an e-commerce 
         - Confirm password must match the entered password.
     - Password visibility toggle for both password and confirm password fields.
     - Displays a success dialog upon successful form submission, with navigation to the home page.
-5. **Custom Page Transition**
+6. **Custom Page Transition**
     
     - Added a custom fade-in animation for page transitions using `FadeInPageRoute`.
+
+7. **Localization**
+    
+    - Added support for Arabic Language using easy localization package.
 
 ## Code Overview
 
@@ -233,6 +237,10 @@ Navigator.push(
   FadeInPageRoute(child: HomePage()),
 );
 ```
+## Packages
+Used easy_localization package for applying localization.
+https://pub.dev/packages/easy_localization
+
 ## Dependencies
 
 This project uses the following Flutter framework components:
